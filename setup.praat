@@ -19,13 +19,12 @@
 # runScript: "run_tests.praat"
 
 # Base menu
-Add menu command: "Objects", "Praat", "CPrAN",     "", 0, ""
-Add menu command: "Objects", "Praat", "Serialise", "", 1, ""
+Add menu command: "Objects", "Praat", "serialise", "CPrAN", 1, ""
 
 # Formats menu
-Add menu command: "Objects", "Praat", "Save as JSON...",        "Serialise", 2, "scripts/save_as_json.praat"
-Add menu command: "Objects", "Praat", "Save as YAML...",        "Serialise", 2, "scripts/save_as_yaml.praat"
-Add menu command: "Objects", "Praat", "Batch save as JSON...",  "Serialise", 2, "scripts/batch_save_to_json.praat"
+Add menu command: "Objects", "Praat", "Save as JSON...",        "serialise", 2, "scripts/save_as_json.praat"
+Add menu command: "Objects", "Praat", "Save as YAML...",        "serialise", 2, "scripts/save_as_yaml.praat"
+Add menu command: "Objects", "Praat", "Batch save as JSON...",  "serialise", 2, "scripts/batch_save_to_json.praat"
 
 Add menu command: "Objects", "Open",  "Read from JSON/YAML...", "",          0, "scripts/read_from_json.praat"
 

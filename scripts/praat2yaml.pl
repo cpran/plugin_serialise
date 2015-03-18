@@ -100,7 +100,7 @@ foreach (@ARGV) {
     $input = multipart_fix($input) if ($input =~ /class = "$TYPES{MultiPart}.*"/);
 
     $input = tableofreal_fix($input) if ($input =~ /class = "$TYPES{TableOfReal}"/);
-    
+
     $input = polygon_fix($input) if ($input =~ /class = "Polygon.*"/);
 
 

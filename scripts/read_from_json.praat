@@ -27,7 +27,7 @@ infile$ = checkFilename.name$
 
 name$ = right$(infile$, length(infile$) - rindex(infile$, "/"))
 type$ = right$(infile$, length(infile$) - rindex(infile$, "."))
-type$ = if type$ = "json" or type$ = "yaml" then type$ else "yaml" fi 
+type$ = if type$ = "json" or type$ = "yaml" then type$ else "yaml" fi
 name$ = name$ - ("." + type$)
 
 # Create temporary directory for output

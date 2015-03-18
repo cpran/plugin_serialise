@@ -1,14 +1,14 @@
 json.indent_level = 0
 json.indent$ = ""
-if !variableExists("json.n$") 
+if !variableExists("json.n$")
   json.n$ = newline$
 endif
 
-if !variableExists("json.t$") 
+if !variableExists("json.t$")
   json.t$ = tab$
 endif
 
-if !variableExists("json.s$") 
+if !variableExists("json.s$")
   json.s$ = " "
 endif
 
