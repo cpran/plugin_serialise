@@ -12,9 +12,9 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../procedures/utils.proc
-include ../procedures/selection.proc
-include ../procedures/check_filename.proc
+include ../../plugin_utils/procedures/utils.proc
+include ../../plugin_utils/procedures/check_filename.proc
+include ../../plugin_selection/procedures/selection.proc
 
 form Save as YAML...
   sentence Save_as

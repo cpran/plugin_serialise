@@ -12,8 +12,8 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../procedures/check_directory.proc
-include ../procedures/require.proc
+include ../../plugin_utils/procedures/check_directory.proc
+include ../../plugin_utils/procedures/require.proc
 @require("5.3.44")
 
 form Batch convert to JSON...
