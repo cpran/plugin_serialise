@@ -4,27 +4,27 @@ Homepage: https://gitlab.com/cpran/plugin_serialise
 Version: 0.0.1
 Maintainer: José Joaquín Atria <jjatria@gmail.com>
 Depends:
-  - praat: 5.0.0+
-  - perl: 5.10+
-  - cpran/utils: 0.0.1+
-  - cpran/selection: 0.0.1+
+  praat: 5.0.0+
+  perl: 5.10+
+  cpran/utils: 0.0.1+
+  cpran/selection: 0.0.1+
 Recommends:
 License: GPL3
 Readme: readme.md
 Description:
-  - Short: read/write JSON or YAML Praat objects
-  - Long: >
-      Working with Praat normally means interacting with several different types
-      of objects, representing different abstractions within the program.
-      However, the way in which Praat saves these to disk is highly
-      idiosncratic, and although there are some non-Praat parsers written for
-      the most common object types, they have limitations.
+  Short: read/write JSON or YAML Praat objects
+  Long: >
+    Working with Praat normally means interacting with several different types
+    of objects, representing different abstractions within the program.
+    However, the way in which Praat saves these to disk is highly
+    idiosncratic, and although there are some non-Praat parsers written for
+    the most common object types, they have limitations.
 
-      This plugin attempts to solve this by allowing the serialisation and
-      deserialisation of most Praat object types into either YAML or JSON. The
-      benefit of using these serialisation standards is that their use is
-      widespread, and parsers and validators are everywhere.
+    This plugin attempts to solve this by allowing the serialisation and
+    deserialisation of most Praat object types into either YAML or JSON. The
+    benefit of using these serialisation standards is that their use is
+    widespread, and parsers and validators are everywhere.
 
-      Included in the plugin are Perl scripts to handle the heavy-lifting of the
-      conversion, and Praat wrappers to facilitate the reading and writing of
-      serialised files from within the Praat GUI.
+    Included in the plugin are Perl scripts to handle the heavy-lifting of the
+    conversion, and Praat wrappers to facilitate the reading and writing of
+    serialised files from within the Praat GUI.
