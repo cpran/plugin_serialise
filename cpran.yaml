@@ -1,7 +1,7 @@
 ---
 Plugin: serialise
 Homepage: https://gitlab.com/cpran/plugin_serialise
-Version: 0.0.1
+Version: 0.0.2
 Maintainer: José Joaquín Atria <jjatria@gmail.com>
 Depends:
   praat: 5.0.0+
@@ -9,6 +9,7 @@ Depends:
   Plugins:
     utils: 0.0.1+
     selection: 0.0.1+
+    testsimple: 0.0.5+
 Recommends:
 License: GPL3
 Readme: readme.md
