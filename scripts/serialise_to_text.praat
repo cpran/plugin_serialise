@@ -86,8 +86,8 @@ removeObject: original_selection
 # Serialise the data structure, with the help of a Perl script
 procedure serialise (.in$, .out$, .output$, .format$, collection)
   Save as text file: .in$
-  command$ = "perl " +
-    ... preferencesDirectory$ + "/plugin_jjatools/helper/praat2yaml.pl " +
+  command$ = "perl " + preferencesDirectory$ +
+    ... "/plugin_serialise/scripts/praat2yaml.pl " +
     ... "--" + .output$ + " " +
     ... "--" + .format$ + " " + .in$ +
     ... " > " + .out$

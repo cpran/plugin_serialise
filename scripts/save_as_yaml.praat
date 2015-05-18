@@ -26,5 +26,6 @@ form Save as YAML...
   comment If saving multiple objects with the same name, save as Collection
 endform
 
-runScript: "../../plugin_jjatools/management/serialise_to_text.praat",
+runScript: preferencesDirectory$ +
+  ... "/plugin_serialise/scripts/serialise_to_text.praat",
   ... save_as$, "YAML", format$, 0

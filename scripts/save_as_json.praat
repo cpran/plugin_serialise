@@ -27,5 +27,6 @@ form Save as JSON...
   comment If saving multiple objects with the same name, save as Collection
 endform
 
-runScript: "../../plugin_jjatools/management/serialise_to_text.praat",
+runScript: preferencesDirectory$ +
+  ... "/plugin_serialise/scripts/serialise_to_text.praat",
   ... save_as$, "JSON", format$, pretty_printed

@@ -35,7 +35,7 @@ name$ = name$ - ("." + type$)
 tmpfile$ = mktemp.name$ + name$ + ".Praat"
 
 command$ = "perl " +
-  ... preferencesDirectory$ + "/plugin_jjatools/helper/yaml2praat.pl " +
+  ... preferencesDirectory$ + "/plugin_serialise/scripts/yaml2praat.pl " +
   ... "--" + type$ + " " +
   ... infile$ + " > " + tmpfile$
 # appendInfoLine: command$
