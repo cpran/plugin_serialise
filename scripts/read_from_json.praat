@@ -37,9 +37,9 @@ command$ = "perl " +
   ... preferencesDirectory$ + "/plugin_serialise/scripts/yaml2praat.pl " +
   ... infile$ + " --outfile " + tmpfile$
 # appendInfoLine: command$
-system 'command$'
+system_nocheck 'command$'
 
-Read from file: tmpfile$
+nocheck Read from file: tmpfile$
 
 deleteFile: tmpfile$
 deleteFile: mktemp.name$

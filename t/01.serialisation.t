@@ -5,22 +5,11 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_utils/procedures/utils.proc
 
-# To use selected objects
-# @saveSelectionTable()
-# selection = saveSelectionTable.table
-
 # To test all* objects
 runScript: "make_objects.praat"
 selection = selected()
 Randomize rows
 @restoreSavedSelection(selection)
-
-# To test small sample of objects
-# a = Create SpeechSynthesizer: "English", "m3"
-# To Sound: "This is some text.", "yes"
-# plusObject: a
-# @saveSelectionTable()
-# selection = saveSelectionTable.table
 
 @mktemp("testserial.XXXXX")
 temporaryDirectory$ = mktemp.name$
@@ -88,7 +77,6 @@ for i to split.length
         name$[2] = selected$(type$[2])
         error += if type$[1] != type$[2] then 1 else 0 fi
         error += if name$[1] != name$[2] then 2 else 0 fi
-#         pauseScript: object_name$
         Remove
       else
         error += 20
@@ -106,6 +94,9 @@ for i to split.length
   endif
 endfor
 
+for i to Object_'selection'.nrow
+  removeObject: Object_'selection'[i, "id"]
+endfor
 removeObject: selection
 deleteFile: temporaryDirectory$
 

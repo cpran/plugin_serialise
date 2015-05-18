@@ -104,12 +104,12 @@ foreach (@ARGV) {
     # Praat Photo objects are saved in (yet another) slightly non-standard
     # way. If a Photo object is contained in the stream to be processed, then
     # some pre-processing is needed.
-    $input = multipart_fix($input) if ($input =~ /class = "$TYPES{MultiPart}.*"/);
 
     $input = tableofreal_fix($input) if ($input =~ /class = "$TYPES{TableOfReal}"/);
+# 
+    $input = multipart_fix($input) if ($input =~ /class = "$TYPES{MultiPart}.*"/);
 
     $input = polygon_fix($input) if ($input =~ /class = "Polygon.*"/);
-
 
     # The Praat output format can be converted to satisfactory YAML by means of
     # the following set of regular expressions.
@@ -250,7 +250,7 @@ sub tableofreal_fix {
     }
 
     if ($in_tor and $lines[$i] =~ /(^\s*)columnLabels/) {
-      $lines[$i] = $indent . $lines[$i] if ($input =~ /CrossCorrelationTables/);
+      $lines[$i] = $indent . $lines[$i] if ($input =~ /CrossCorrelationTables?/);
       $lines[$i+1] =~ s/^\s*//g;
       $lines[$i+1] = "$indent- " . $lines[$i+1];
       $lines[$i+1] =~ s/\t(?:\s*)([^\t]+)/\n$indent- $1/g;
@@ -258,7 +258,7 @@ sub tableofreal_fix {
 
     if ($in_tor and $lines[$i] =~ /(^\s*)numberOfRows/) {
       $in_rows = 1;
-      $lines[$i] .= "\n${indent}rows:\n";
+      $lines[$i] .= "\n$1rows:\n";
       next;
     }
 
@@ -285,13 +285,14 @@ sub multipart_fix {
   my $class = "";
   my $fix_line = 0;
   foreach my $i (0..$#lines) {
-    my $indent;
+    my $indent = "";
     if ($lines[$i] =~ /^(\s*)(?:Object )?class = "(?'class'$TYPES{MultiPart}).*"/) {
       $in_multipart = 1;
       $class = $+{class};
       $indent = $1;
-    } elsif ($lines[$i] =~ /^\s*item \[[0-9]+\]:\s*/) {
+    } elsif (($lines[$i] =~ /^\s*item \[[0-9]+\]:\s*/) || ($lines[$i] =~ /^\s*class =/)) {
       $in_multipart = 0;
+      $fix_line = 0;
     }
 
     if ($in_multipart) {
