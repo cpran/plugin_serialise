@@ -27,7 +27,6 @@ infile$ = checkFilename.name$
 
 name$ = right$(infile$, length(infile$) - rindex(infile$, "/"))
 type$ = right$(infile$, length(infile$) - rindex(infile$, "."))
-type$ = if type$ = "json" or type$ = "yaml" then type$ else "yaml" fi
 name$ = name$ - ("." + type$)
 
 # Create temporary directory for output
@@ -36,10 +35,9 @@ tmpfile$ = mktemp.name$ + name$ + ".Praat"
 
 command$ = "perl " +
   ... preferencesDirectory$ + "/plugin_serialise/scripts/yaml2praat.pl " +
-  ... "--" + type$ + " " +
-  ... infile$ + " > " + tmpfile$
+  ... infile$ + " --outfile " + tmpfile$
 # appendInfoLine: command$
-system_nocheck 'command$'
+system 'command$'
 
 Read from file: tmpfile$
 

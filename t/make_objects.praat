@@ -1,9 +1,6 @@
 # Creates sample versions of all Praat objects
-select all
-nocheck Remove
-
-include ../procedures/selection.proc
-include ../procedures/utils.proc
+include ../../plugin_selection/procedures/selection.proc
+include ../../plugin_utils/procedures/utils.proc
 
 @mktemp("mkobj.XXXXX")
 dir$ = mktemp.name$

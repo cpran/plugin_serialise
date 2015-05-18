@@ -20,12 +20,12 @@ use 5.010;
 
 BEGIN {
   my @use = (
-    'use Data::Dumper',
     'use File::Slurp',
     'use Pod::Usage',
     'use Getopt::Long qw(:config no_ignore_case)',
     'use Encode qw(encode decode)',
     'use YAML::XS',
+    'use JSON qw//',
     'use Readonly',
   );
   my $missing = 0;
@@ -69,7 +69,9 @@ my %setup;
 
 $setup{'output'} = $JSON if $0 =~ /json/;
 
+
 GetOptions (
+  \%setup,
   'yaml'       => sub {},
   'json'       => sub { $setup{'output'} = $JSON },
   'pretty'     => sub { $setup{'format'} = $PRETTY },
@@ -78,6 +80,11 @@ GetOptions (
   'encoding=s',
   'collection',
   'help|?'     => sub { pod2usage( -verbose => 3 ) },
+  'outfile=s'  => sub {
+    shift;
+    open OUTPUT, '>', $_[0] or die $!;
+    STDOUT->fdopen( \*OUTPUT, 'w' ) or die $!;
+  },
 ) or pod2usage(2);
 
 $setup{'debug'}      = $setup{'debug'} // 0;
@@ -136,12 +143,13 @@ foreach (@ARGV) {
 
 sub to_yaml {
   my $o = shift;
+
   print decode('UTF-8', Dump $o);
 }
 
 sub to_json {
   my $o = shift;
-  use JSON qw//;
+
   my $json = JSON->new->allow_nonref;
   my $output;
   if ($setup{format} eq $PRETTY) {
@@ -149,6 +157,7 @@ sub to_json {
   } else {
     $output = $json->encode($o);
   }
+
   print $output;
 }
 
