@@ -26,6 +26,9 @@ procedure get (.type$)
   @restoreSelection()
 endproc
 
+@saveOutputPreferences()
+Text writing preferences: "UTF-8"
+
 objects$ = List readable types of objects
 @split: newline$, objects$
 for i to split.length
@@ -102,6 +105,8 @@ deleteFile: temporaryDirectory$
 
 @done_testing()
 
+@restoreOutputPreferences()
+
 procedure error_code: .error
   if .error
     .error$ = string$(.error)
@@ -121,4 +126,14 @@ procedure error_code: .error
   else
     .error$ = "no error"
   endif
+endproc
+
+
+procedure saveOutputPreferences ()
+  .prefs$ = readFile$(preferencesDirectory$ + "/prefs5")
+  .output$ = extractLine$(.prefs$, "TextEncoding.outputEncoding: ")
+endproc
+
+procedure restoreOutputPreferences ()
+  Text writing preferences: saveOutputPreferences.output$
 endproc
