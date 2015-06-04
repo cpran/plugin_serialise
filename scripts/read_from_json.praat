@@ -33,8 +33,8 @@ name$ = name$ - ("." + type$)
 @mktemp: "readserial.XXXXX"
 tmpfile$ = mktemp.name$ + name$ + ".Praat"
 
-command$ = "perl " +
-  ... preferencesDirectory$ + "/plugin_serialise/scripts/yaml2praat.pl " +
+command$ = "perl " + preferencesDirectory$ - "con" + 
+  ... "/plugin_serialise/scripts/yaml2praat.pl " +
   ... infile$ + " --outfile " + tmpfile$
 # appendInfoLine: command$
 system_nocheck 'command$'

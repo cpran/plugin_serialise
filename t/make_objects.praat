@@ -128,7 +128,7 @@ To KlattGrid (simple): 0.005, 5, 5500, 0.025, 50, 60, 600, 100, "yes"
 Extract flutter tier
 @add()
 
-Create NoCoda grammar
+Create metrics grammar: "equal", "FtNonfinal", 0, 0, 0, "Nonfinal", 1, 0, 0
 @add()
 To PairDistribution: 100000, 2
 @add()
@@ -136,7 +136,8 @@ To PairDistribution: 100000, 2
 Create rectangular Network: 0.01, "linear", 0, 1, 1, 0.1, -1, 1, 0, 10, 10, "yes", -0.1, 0.1
 @add()
 
-Create Strings as file list: "files", preferencesDirectory$ + "*wav"
+Create Strings as file list: "files",
+  ... preferencesDirectory$ - "con" + "*wav"
 @add()
 To WordList
 @add()
@@ -202,6 +203,11 @@ To KNN Classifier: "Classifier", "Random"
 @plus("Pattern")
 To FeatureWeights: 0.02, 20, 1, "Co-optimization", 1, "Flat"
 @add()
+
+#@select("Pattern")
+#@plus("Categories")
+#To Discriminant
+#@add()
 
 @select("Speaker")
 @plus("Art")

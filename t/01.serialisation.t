@@ -58,7 +58,7 @@ for i to split.length
 
       json_file$ = temporaryDirectory$ + name$[1] + ".json"
 
-      nocheck runScript: preferencesDirectory$ +
+      nocheck runScript: preferencesDirectory$ - "con" +
         ... "/plugin_serialise/scripts/save_as_json.praat",
         ... json_file$, "Data stream", "yes"
 
@@ -70,7 +70,7 @@ for i to split.length
 
       @clearSelection()
 
-      nocheck runScript: preferencesDirectory$ +
+      nocheck runScript: preferencesDirectory$ - "con" +
         ... "/plugin_serialise/scripts/read_from_json.praat",
         ... json_file$
 
@@ -80,6 +80,7 @@ for i to split.length
         name$[2] = selected$(type$[2])
         error += if type$[1] != type$[2] then 1 else 0 fi
         error += if name$[1] != name$[2] then 2 else 0 fi
+        # error += 1 - objectsAreIdentical(object_id, selected())
         Remove
       else
         error += 20
@@ -92,7 +93,8 @@ for i to split.length
     @error_code: error
     error$ = error_code.error$
 
-    @ok: !error, object_name$ + if error then " (" + error$ + ")" else "" fi
+    @ok: !error, object_name$ +
+      ... if error then " (" + error$ + ")" else "" fi
 
   endif
 endfor
@@ -119,10 +121,10 @@ procedure error_code: .error
           ...    "" fi fi fi
 
     .error$ = .error$ +
-      ... if .nt$ = "1" then ", type" else
-      ... if .nt$ = "2" then ", name" else
-      ... if .nt$ = "3" then ", type and name" else
-      ...    "" fi fi fi
+          ... if .nt$ = "1" then ", type" else
+          ... if .nt$ = "2" then ", name" else
+          ... if .nt$ = "3" then ", type and name" else
+          ...    "" fi fi fi
   else
     .error$ = "no error"
   endif
@@ -130,8 +132,9 @@ endproc
 
 
 procedure saveOutputPreferences ()
-  .prefs$ = readFile$(preferencesDirectory$ + "/prefs5")
-  .output$ = extractLine$(.prefs$, "TextEncoding.outputEncoding: ")
+  .prefs$ = readFile$(preferencesDirectory$ - "con" + "/prefs5")
+  .output$ = extractLine$(.prefs$,
+    ... "TextEncoding.outputEncoding: ")
 endproc
 
 procedure restoreOutputPreferences ()
