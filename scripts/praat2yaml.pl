@@ -52,7 +52,7 @@ Readonly my $PRETTY => 'pretty';
 Readonly my $MINI   => 'mini';
 Readonly my $TAB    => '    ';
 Readonly my %TYPES = (
-  TableOfReal         => '(TableOfReal|ContingencyTable|Configuration|(Diss|S)imilarity|Distance|ScalarProduct|Weight|CrossCorrelationTables?|Diagonalizer|MixingMatrix|Confusion|FeatureWeights|Correlation|Covariance|EditCostsTable|SSCP)',
+  TableOfReal         => '(TableOfReal|ContingencyTable|Configuration|(Diss|S)imilarity|Discriminant|Distance|ScalarProduct|Weight|CrossCorrelationTables?|Diagonalizer|MixingMatrix|Confusion|FeatureWeights|Correlation|Covariance|EditCostsTable|SSCP)',
   size_list           => '(intervals|points|outputCategories)',
   MultiPart           => '(Photo|KlattGrid|VocalTractTier|TextGrid|FeatureWeights|HMM|KNN|Manipulation)',
   FeatureWeightsParts => '(fweights)',
@@ -250,7 +250,8 @@ sub tableofreal_fix {
     }
 
     if ($in_tor and $lines[$i] =~ /(^\s*)columnLabels/) {
-      $lines[$i] = $indent . $lines[$i] if ($input =~ /CrossCorrelationTables?/);
+      $indent = $1 if $lines[$i-1] =~ /^(\s*)/;
+      $lines[$i] = $indent . $lines[$i] if ($input =~ /(CrossCorrelationTables?|SSCP)/);
       $lines[$i+1] =~ s/^\s*//g;
       $lines[$i+1] = "$indent- " . $lines[$i+1];
       $lines[$i+1] =~ s/\t(?:\s*)([^\t]+)/\n$indent- $1/g;

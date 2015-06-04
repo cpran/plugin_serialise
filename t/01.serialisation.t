@@ -80,6 +80,7 @@ for i to split.length
         name$[2] = selected$(type$[2])
         error += if type$[1] != type$[2] then 1 else 0 fi
         error += if name$[1] != name$[2] then 2 else 0 fi
+        # This function seems to be buggy, or way too strict
         # error += 1 - objectsAreIdentical(object_id, selected())
         Remove
       else
