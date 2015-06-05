@@ -8,7 +8,7 @@ include ../../plugin_utils/procedures/utils.proc
 # To test all* objects
 runScript: "make_objects.praat"
 selection = selected()
-Randomize rows
+Sort rows: "type"
 @restoreSavedSelection(selection)
 
 @mktemp("testserial.XXXXX")
@@ -50,8 +50,8 @@ for i to split.length
         @todo(1, "No writer for " + object_name$)
       endif
 
-      object_id = get.id
-      selectObject: object_id
+      original = get.id
+      selectObject: original
 
       type$[1] = extractWord$(selected$(), "")
       name$[1] = selected$(type$[1])
@@ -81,7 +81,7 @@ for i to split.length
         error += if type$[1] != type$[2] then 1 else 0 fi
         error += if name$[1] != name$[2] then 2 else 0 fi
         # This function seems to be buggy, or way too strict
-        # error += 1 - objectsAreIdentical(object_id, selected())
+        # error += 1 - objectsAreIdentical(original, selected())
         Remove
       else
         error += 20
