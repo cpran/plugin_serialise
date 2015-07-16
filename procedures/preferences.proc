@@ -1,0 +1,40 @@
+procedure savePreferences ()
+  .pref_file$ = preferencesDirectory$ - "con" + "/prefs5"
+  .prefs$ = readFile$(.pref_file$)
+  .output$ = extractLine$(.prefs$,
+    ... "TextEncoding.outputEncoding: ")
+endproc
+
+procedure restorePreferences ()
+  if checkPreferences.restore
+    Text writing preferences: savePreferences.output$
+  endif
+endproc
+
+procedure checkPreferences ()
+  @savePreferences()
+  .restore = 0
+  appendInfoLine: savePreferences.output$
+  if savePreferences.output$ != "UTF-8"
+    @saveSelection()
+    .tmp = Create Sound as pure tone: "test",
+      ... 1, 0, 0.1, 44100, 220, 0.2, 0.01, 0.01
+    .gui = nocheck View & Edit
+    removeObject: .tmp
+    @restoreSelection()
+    if .gui = undefined
+      exitScript: "Please change the text output preferences to UTF-8"
+    endif
+    beginPause: "This script requires output to be set to UTF-8"
+    .button = endPause: "Abort", "Set temporarily", "Set permanently", 3, 1
+    if .button == 1
+      exit
+    elsif .button == 2
+      .restore = 1
+    elsif .button == 3
+      .prefs$ = replace_regex$(savePreferences.prefs$, "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
+      writeFile: savePreferences.pref_file$, .prefs$
+    endif
+    Text writing preferences: "UTF-8"
+  endif
+endproc

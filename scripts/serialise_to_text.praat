@@ -15,6 +15,7 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
+include ../../plugin_serialise/procedures/preferences.proc
 
 form Save as serialised text file...
   sentence Save_as
@@ -29,6 +30,9 @@ form Save as serialised text file...
   comment This command requires PERL
   comment If saving multiple objects with the same name, save as Collection
 endform
+
+# Make sure text-writing preferences are set correctly
+@checkPreferences()
 
 # Save original selection
 @saveSelectionTable()
@@ -82,6 +86,9 @@ deleteFile: mktemp.name$
 # Restore the original selection and clean-up
 @restoreSavedSelection(original_selection)
 removeObject: original_selection
+
+# If the user requested preferences to be kept, restore originals
+@restorePreferences()
 
 #
 # Procedures
