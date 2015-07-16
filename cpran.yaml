@@ -19,7 +19,7 @@ Description:
     Working with Praat normally means interacting with several different types
     of objects, representing different abstractions within the program.
     However, the way in which Praat saves these to disk is highly
-    idiosncratic, and although there are some non-Praat parsers written for
+    idiosyncratic, and although there are some non-Praat parsers written for
     the most common object types, they have limitations.
 
     This plugin attempts to solve this by allowing the serialisation and
