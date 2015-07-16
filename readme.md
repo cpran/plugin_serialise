@@ -1,4 +1,4 @@
-serialise
+serialise ![build badge](https://ci.gitlab.com/projects/2842/status.png?ref=master)
 =========
 
 Description
