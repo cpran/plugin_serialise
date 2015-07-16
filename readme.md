@@ -1,4 +1,4 @@
-serialise ![build badge](https://ci.gitlab.com/projects/2842/status.png?ref=master)
+serialise [![build badge][badge]][build]
 =========
 
 Description
@@ -12,3 +12,6 @@ Requirements
 * Perl
 * [utils](https://gitlab.com/cpran/plugin_utils)
 * [selection](https://gitlab.com/cpran/plugin_selection)
+
+[badge]: https://ci.gitlab.com/projects/2842/status.png?ref=master
+[build]: https://ci.gitlab.com/projects/2842
