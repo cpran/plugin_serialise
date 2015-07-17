@@ -19,7 +19,7 @@
 # runScript: "run_tests.praat"
 
 # Base menu
-Add menu command: "Objects", "Praat", "serialise", "CPrAN", 1, ""
+nocheck Add menu command: "Objects", "Praat", "serialise", "CPrAN", 1, ""
 
 # Formats menu
 Add menu command: "Objects", "Praat", "Save as JSON...",        "serialise", 2, "scripts/save_as_json.praat"

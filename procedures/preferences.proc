@@ -1,8 +1,12 @@
 procedure savePreferences ()
-  .pref_file$ = preferencesDirectory$ - "con" + "/prefs5"
-  .prefs$ = readFile$(.pref_file$)
-  .output$ = extractLine$(.prefs$,
-    ... "TextEncoding.outputEncoding: ")
+  .file$ = if unix      then "prefs5"           else
+    ...    if windows   then "Preferences5.ini" else
+    ...    if macintosh then "Prefs5"           else
+    ...    "--undefined--" fi fi fi
+  .file$ = preferencesDirectory$ - "con" + "/" + .file$
+    
+  .preferences$ = readFile$(.file$)
+  .output$ = extractLine$(.preferences$, "TextEncoding.outputEncoding: ")
 endproc
 
 procedure restorePreferences ()
@@ -31,8 +35,9 @@ procedure checkPreferences ()
       elsif .button == 2
         .restore = 1
       elsif .button == 3
-        .prefs$ = replace_regex$(savePreferences.prefs$, "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
-        writeFile: savePreferences.pref_file$, .prefs$
+        .prefs$ = replace_regex$(savePreferences.prefs$, 
+          ... "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
+        writeFile: savePreferences.file$, .preferences$
       endif
     endif
     Text writing preferences: "UTF-8"
