@@ -97,12 +97,12 @@ removeObject: original_selection
 # Serialise the data structure, with the help of a Perl script
 procedure serialise (.in$, .out$, .output$, .format$, .collection)
   Save as text file: .in$
-  command$ = "perl " + preferencesDirectory$ - "con" +
-    ... "/plugin_serialise/scripts/praat2yaml.pl " +
+  command$ = "perl """ + preferencesDirectory$ - "con" +
+    ... "/plugin_serialise/scripts/praat2yaml.pl"" " +
     ... "--" + .output$       + " " +
     ... "--" + .format$       + " " +
-    ... "--outfile " + .out$  + " " +
-    ... .in$
+    ... "--outfile """ + .out$  + """ " +
+    ... """" + .in$ + """"
 #   appendInfoLine: command$
-  system_nocheck 'command$'
+  system 'command$'
 endproc

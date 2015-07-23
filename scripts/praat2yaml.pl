@@ -82,7 +82,7 @@ GetOptions (
   'help|?'     => sub { pod2usage( -verbose => 3 ) },
   'outfile=s'  => sub {
     shift;
-    open OUTPUT, '>', $_[0] or die $!;
+    open OUTPUT, '>', $_[0] or die "Could not open $_[0]: $!";
     STDOUT->fdopen( \*OUTPUT, 'w' ) or die $!;
   },
 ) or pod2usage(2);
