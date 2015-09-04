@@ -17,6 +17,8 @@ use Readonly;
 
 =head1 NAME
 
+=encoding utf8
+
 yaml2praat, json2praat - De-serialise YAML or JSON to Praat objects
 
 =head1 SYNOPSIS
@@ -26,10 +28,10 @@ yaml2praat, json2praat - De-serialise YAML or JSON to Praat objects
 
 Options:
 
-    -yaml         Use YAML serialisation
-    -json         Use JSON serialisation
-    -tab=TAB      Specify character(s) to be used for indentation
-    -encoding     Specify encoding of input file.
+    --yaml         Use YAML serialisation
+    --json         Use JSON serialisation
+    --tab=TAB      Specify character(s) to be used for indentation
+    --encoding     Specify encoding of input file.
 
 =head1 DESCRIPTION
 
@@ -43,7 +45,7 @@ YAML or JSON. This script correctly manages both kinds, ensuring the output can
 be read as-is in Praat (at least until a bug is found).
 
 The script can be called as B<yaml2praat> or as B<json2praat>. The only
-difference is that in the latter case, the I<-json> option is set by default.
+difference is that in the latter case, the I<--json> option is set by default.
 
 =cut
 
@@ -453,6 +455,6 @@ the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-yaml2praat(1), json2praat(1)
+praat2yaml(1), praat2json(1)
 
 =cut

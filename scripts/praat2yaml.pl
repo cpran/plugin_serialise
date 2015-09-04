@@ -16,6 +16,8 @@ use File::HomeDir;
 
 =head1 NAME
 
+=encoding utf8
+
 praat2yaml, praat2json - Standard serialisation of Praat objects
 
 =head1 SYNOPSIS
@@ -41,7 +43,7 @@ serialised version of the same data structure. Output can optionally be given
 using the JSON or YAML serialisation schemes, the latter being the default.
 
 The script can be called as B<praat2yaml> or as B<praat2json>. The only
-difference is that in the latter case, the I<-json> option is set by default.
+difference is that in the latter case, the I<--json> option is set by default.
 
 =cut
 
