@@ -47,16 +47,16 @@ difference is that in the latter case, the I<-json> option is set by default.
 
 =cut
 
-Readonly my $YAML   => 'yaml';
-Readonly my $JSON   => 'json';
-Readonly my $PRETTY => 'pretty';
-Readonly my $MINI   => 'mini';
+Readonly my $YAML    => 'yaml';
+Readonly my $JSON    => 'json';
+Readonly my $PRETTY  => 'pretty';
+Readonly my $MINI    => 'mini';
 
-Readonly my %BOOLEAN = (
+Readonly my %BOOLEAN => (
   gm                            => 1,
   clamped                       => 1,
 );
-Readonly my %STRINGS = (
+Readonly my %STRINGS => (
   class                         => 1,
   name                          => 1,
   text                          => 1,
@@ -71,7 +71,7 @@ Readonly my %STRINGS = (
   voiceVariantName              => 1,
   voiceLanguageName             => 1,
 );
-Readonly my %SIZED_LISTS = (
+Readonly my %SIZED_LISTS => (
   intervals                     => 1,
   points                        => 1,
   rows                          => 1,
@@ -85,7 +85,7 @@ Readonly my %SIZED_LISTS = (
   frication_formants_amplitudes => 1,
   pairs                         => 1,
 );
-Readonly my %TABLE_TYPES = (
+Readonly my %TABLE_TYPES => (
   TableOfReal                   => 1,
   ContingencyTable              => 1,
   Configuration                 => 1,
@@ -105,7 +105,7 @@ Readonly my %TABLE_TYPES = (
   EditCostsTable                => 1,
   SSCP                          => 1,
 );
-Readonly my %PARTS = (
+Readonly my %PARTS => (
   TextGrid                      => { tiers=>1,},
   Photo                         => { red=>1,green=>1,blue=>1,transparency=>1,},
   FeatureWeights                => { fweights=>1,},
@@ -264,13 +264,13 @@ sub print_object {
   foreach (@keys) {
     if (!ref($object->{$_})) {
       my $value = $object->{$_} // '';
-      if (exists $BOOLEAN{$_}) {
+      if (defined $BOOLEAN{$_}) {
         print_boolean($_, $value);
       } else {
         print $INDENT, "$_ = " . quote_values($_, $value) . " \n";
       }
     } else {
-      if (exists $PARTS{$class}->{$_}) {
+      if (defined $PARTS{$class} and defined $PARTS{$class}->{$_}) {
         if (ref($object->{$_}) eq 'HASH' and scalar keys %{$object->{$_}}) {
           print_part($_, 'exists');
         } else {
@@ -328,8 +328,7 @@ sub quote_values {
 }
 
 sub print_part {
-  my $key = shift;
-  my $value = shift;
+  my ($key, $value) = @_;
 
   print $INDENT, "$key? <$value> \n";
 }
@@ -345,8 +344,7 @@ sub print_boolean {
 }
 
 sub print_tabbed_list {
-  my $name = shift;
-  my $list = shift;
+  my ($name, $list) = @_;
 
   my @list = quote_values($name, @{$list});
   if ($name eq "columnLabels") {
@@ -358,8 +356,7 @@ sub print_tabbed_list {
 
 # Print a list following the rules of Praat object serialisation
 sub print_list {
-  my $name  = shift;
-  my $list = shift;
+  my ($name, $list) = @_;
   die "Not a list: $list" unless ref($list) eq 'ARRAY';
 
   if (ref($list->[0]) eq 'ARRAY') {
