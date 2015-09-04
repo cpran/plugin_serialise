@@ -3,7 +3,7 @@ procedure saveOutputPreferences ()
     ...    if windows   then "Preferences5.ini" else
     ...    if macintosh then "Prefs5"           else
     ...    "--undefined--" fi fi fi
-  .file$ = preferencesDirectory$ - "con" + "/" + .file$
+  .file$ = preferencesDirectory$ + "/" + .file$
 
   .preferences$ = readFile$(.file$)
   .output$ = extractLine$(.preferences$, "TextEncoding.outputEncoding: ")

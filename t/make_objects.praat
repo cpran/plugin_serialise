@@ -2,6 +2,8 @@
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_utils/procedures/utils.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 @mktemp("mkobj.XXXXX")
 dir$ = mktemp.name$
 
@@ -137,7 +139,7 @@ Create rectangular Network: 0.01, "linear", 0, 1, 1, 0.1, -1, 1, 0, 10, 10, "yes
 @add()
 
 Create Strings as file list: "files",
-  ... preferencesDirectory$ - "con" + "*wav"
+  ... preferencesDirectory$ + "/*wav"
 @add()
 To WordList
 @add()

@@ -17,6 +17,8 @@ include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_serialise/procedures/preferences.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 form Save as serialised text file...
   sentence Save_as
   optionmenu Output: 1
@@ -97,7 +99,7 @@ removeObject: original_selection
 # Serialise the data structure, with the help of a Perl script
 procedure serialise (.in$, .out$, .output$, .format$, .collection)
   Save as text file: .in$
-  command$ = "perl """ + preferencesDirectory$ - "con" +
+  command$ = "perl """ + preferencesDirectory$ +
     ... "/plugin_serialise/scripts/praat2yaml.pl"" " +
     ... "--" + .output$       + " " +
     ... "--" + .format$       + " " +

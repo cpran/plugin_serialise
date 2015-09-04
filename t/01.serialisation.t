@@ -1,5 +1,7 @@
 include ../../plugin_testsimple/procedures/test_simple.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 @no_plan()
 
 include ../../plugin_serialise/procedures/preferences.proc
@@ -60,7 +62,7 @@ for i to split.length
 
       json_file$ = temporaryDirectory$ + name$[1] + ".json"
 
-      nocheck runScript: preferencesDirectory$ - "con" +
+      nocheck runScript: preferencesDirectory$ +
         ... "/plugin_serialise/scripts/save_as_json.praat",
         ... json_file$, "Data stream", "yes"
 
@@ -72,7 +74,7 @@ for i to split.length
 
       @clearSelection()
 
-      nocheck runScript: preferencesDirectory$ - "con" +
+      nocheck runScript: preferencesDirectory$ +
         ... "/plugin_serialise/scripts/read_from_json.praat",
         ... json_file$
 

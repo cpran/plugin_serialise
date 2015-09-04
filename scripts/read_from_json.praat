@@ -16,6 +16,8 @@ include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 form Read from serialised text file...
   sentence Read_from
   comment This command reads from YAML or JSON files
@@ -33,7 +35,7 @@ name$ = name$ - ("." + type$)
 @mktemp: "readserial.XXXXX"
 tmpfile$ = mktemp.name$ + name$ + ".Praat"
 
-command$ = "perl """ + preferencesDirectory$ - "con" + 
+command$ = "perl """ + preferencesDirectory$ +
   ... "/plugin_serialise/scripts/yaml2praat.pl"" " +
   ... """" + infile$ + """ --outfile """ + tmpfile$ + """"
 # appendInfoLine: command$

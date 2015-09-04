@@ -12,6 +12,8 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 form Save as YAML...
   sentence Save_as
   optionmenu Format: 1
@@ -22,6 +24,6 @@ form Save as YAML...
   comment If saving multiple objects with the same name, save as Collection
 endform
 
-runScript: preferencesDirectory$ - "con" +
+runScript: preferencesDirectory$ +
   ... "/plugin_serialise/scripts/serialise_to_text.praat",
   ... save_as$, "YAML", format$, 0
