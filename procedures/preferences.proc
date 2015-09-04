@@ -1,24 +1,24 @@
-procedure savePreferences ()
+procedure saveOutputPreferences ()
   .file$ = if unix      then "prefs5"           else
     ...    if windows   then "Preferences5.ini" else
     ...    if macintosh then "Prefs5"           else
     ...    "--undefined--" fi fi fi
   .file$ = preferencesDirectory$ - "con" + "/" + .file$
-    
+
   .preferences$ = readFile$(.file$)
   .output$ = extractLine$(.preferences$, "TextEncoding.outputEncoding: ")
 endproc
 
-procedure restorePreferences ()
-  if checkPreferences.restore
-    Text writing preferences: savePreferences.output$
+procedure restoreOutputPreferences ()
+  if checkOutputPreferences.restore
+    Text writing preferences: saveOutputPreferences.output$
   endif
 endproc
 
-procedure checkPreferences ()
-  @savePreferences()
+procedure checkOutputPreferences ()
+  @saveOutputPreferences()
   .restore = 0
-  if savePreferences.output$ != "UTF-8"
+  if saveOutputPreferences.output$ != "UTF-8"
     @saveSelection()
     .tmp = Create Sound as pure tone: "test",
       ... 1, 0, 0.1, 44100, 220, 0.2, 0.01, 0.01
@@ -35,9 +35,9 @@ procedure checkPreferences ()
       elsif .button == 2
         .restore = 1
       elsif .button == 3
-        .prefs$ = replace_regex$(savePreferences.prefs$, 
+        .preferences$ = replace_regex$(saveOutputPreferences.preferences$,
           ... "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
-        writeFile: savePreferences.file$, .preferences$
+        writeFile: saveOutputPreferences.file$, .preferences$
       endif
     endif
     Text writing preferences: "UTF-8"

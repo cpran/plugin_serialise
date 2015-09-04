@@ -32,7 +32,7 @@ form Save as serialised text file...
 endform
 
 # Make sure text-writing preferences are set correctly
-@checkPreferences()
+@checkOutputPreferences()
 
 # Save original selection
 @saveSelectionTable()
@@ -88,7 +88,7 @@ deleteFile: mktemp.name$
 removeObject: original_selection
 
 # If the user requested preferences to be kept, restore originals
-@restorePreferences()
+@restoreOutputPreferences()
 
 #
 # Procedures

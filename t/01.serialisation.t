@@ -2,6 +2,7 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
+include ../../plugin_serialise/procedures/preferences.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_utils/procedures/utils.proc
 
@@ -26,6 +27,7 @@ procedure get (.type$)
   @restoreSelection()
 endproc
 
+checkOutputPreferences.restore = 1
 @saveOutputPreferences()
 Text writing preferences: "UTF-8"
 
@@ -129,15 +131,4 @@ procedure error_code: .error
   else
     .error$ = "no error"
   endif
-endproc
-
-
-procedure saveOutputPreferences ()
-  .prefs$ = readFile$(preferencesDirectory$ - "con" + "/prefs5")
-  .output$ = extractLine$(.prefs$,
-    ... "TextEncoding.outputEncoding: ")
-endproc
-
-procedure restoreOutputPreferences ()
-  Text writing preferences: saveOutputPreferences.output$
 endproc
