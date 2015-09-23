@@ -13,7 +13,13 @@ See [the troubleshooting page][trouble] for help with some common issues.
 Requirements
 ------------
 
-* Perl
+* Perl >= 5.010
+  * Path::Class
+  * Readonly
+  * YAML::XS
+  * JSON
+  * File::HomeDir
+  * Try::Tiny
 * [utils](https://gitlab.com/cpran/plugin_utils)
 * [selection](https://gitlab.com/cpran/plugin_selection)
 
