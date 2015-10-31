@@ -25,5 +25,5 @@ form Save as YAML...
 endform
 
 runScript: preferencesDirectory$ +
-  ... "/plugin_serialise/scripts/serialise_to_text.praat",
+  ... "/plugin_serialise/scripts/serialise.praat",
   ... save_as$, "YAML", format$, 0

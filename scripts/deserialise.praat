@@ -12,7 +12,12 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
+include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_utils/procedures/check_filename.proc
+include ../../plugin_selection/procedures/selection.proc
+
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "^~", homeDirectory$, 0)
 
 form Read from serialised text file...
   sentence Read_from
@@ -23,6 +28,20 @@ endform
 @checkFilename(read_from$, "Read serialised text file...")
 infile$ = checkFilename.name$
 
-appendInfoLine: "Warning: ""read_from_json.praat"" is deprecated. Prefer ""deserialise.praat"""
+name$ = right$(infile$, length(infile$) - rindex(infile$, "/"))
+type$ = right$(infile$, length(infile$) - rindex(infile$, "."))
+name$ = name$ - ("." + type$)
 
-runScript: "deserialise.praat", infile$
+# Create temporary directory for output
+@mktemp: "readserial.XXXXX"
+tmpfile$ = mktemp.name$ + name$ + ".Praat"
+
+command$ = "perl """ + preferencesDirectory$ +
+  ... "/plugin_serialise/scripts/yaml2praat.pl"" " +
+  ... """" + infile$ + """ --outfile """ + tmpfile$ + """"
+# appendInfoLine: command$
+system 'command$'
+Read from file: tmpfile$
+
+deleteFile: tmpfile$
+deleteFile: mktemp.name$

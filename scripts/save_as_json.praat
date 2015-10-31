@@ -26,5 +26,5 @@ form Save as JSON...
 endform
 
 runScript: preferencesDirectory$ +
-  ... "/plugin_serialise/scripts/serialise_to_text.praat",
+  ... "/plugin_serialise/scripts/serialise.praat",
   ... save_as$, "JSON", format$, pretty_printed

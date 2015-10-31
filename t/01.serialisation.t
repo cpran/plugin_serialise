@@ -75,7 +75,7 @@ for i to split.length
       @clearSelection()
 
       nocheck runScript: preferencesDirectory$ +
-        ... "/plugin_serialise/scripts/read_from_json.praat",
+        ... "/plugin_serialise/scripts/deserialise.praat",
         ... json_file$
 
       deleteFile: json_file$

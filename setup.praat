@@ -26,7 +26,7 @@ nocheck Add menu command: "Objects", "Praat", "Save as JSON...",        "seriali
 nocheck Add menu command: "Objects", "Praat", "Save as YAML...",        "serialise", 2, "scripts/save_as_yaml.praat"
 nocheck Add menu command: "Objects", "Praat", "Batch save as JSON...",  "serialise", 2, "scripts/batch_save_to_json.praat"
 
-nocheck Add menu command: "Objects", "Open",  "Read from JSON/YAML...", "",          0, "scripts/read_from_json.praat"
+nocheck Add menu command: "Objects", "Open",  "Read from JSON/YAML...", "",          0, "scripts/deserialise.praat"
 
 ## Dynamic commands
 

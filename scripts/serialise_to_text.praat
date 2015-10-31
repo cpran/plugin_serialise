@@ -12,13 +12,6 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../../plugin_utils/procedures/utils.proc
-include ../../plugin_utils/procedures/check_filename.proc
-include ../../plugin_selection/procedures/selection.proc
-include ../../plugin_serialise/procedures/preferences.proc
-
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
-
 form Save as serialised text file...
   sentence Save_as
   optionmenu Output: 1
@@ -33,78 +26,6 @@ form Save as serialised text file...
   comment If saving multiple objects with the same name, save as Collection
 endform
 
-# Make sure text-writing preferences are set correctly
-@checkOutputPreferences()
+appendInfoLine: "Warning: ""serialise_to_text.praat"" is deprecated. Prefer ""serialise.praat"""
 
-# Save original selection
-@saveSelectionTable()
-original_selection = saveSelectionTable.table
-
-# De-select all incompatible objects
-@deselectTypes("LongSound")
-
-# Set initial options:
-@toLower(output$)
-output$ = toLower.return$
-# Should output maintain Collection structure?
-collection = if format$ = "Collection" then 1 else 0 fi
-# Should output be pretty-printed?
-format$ = if pretty_printed then "pretty" else "minified" fi
-
-# Prepare for writing
-# Generate filename for Praat serialisation
-
-if numberOfSelected() = 1
-  type$ = extractWord$(selected$(), "")
-  name$ = selected$(type$)
-  infile$ = name$ + "." + type$
-
-  # Generate output filename
-  @toLower(type$)
-  outfile$ = name$ + "_" + toLower.return$ + "." + output$
-elsif numberOfSelected() > 1
-  infile$  = "praat_collection.Collection"
-  outfile$ = "praat_collection." + output$
-else
-  exitScript: "No objects selected"
-endif
-
-# Set output file
-@checkWriteFile(save_as$,
-  ... "Save object(s) as single " + output$ + " file...", outfile$)
-outfile$ = checkWriteFile.name$
-
-# Create temporary directory for output
-@mktemp: "toserial.XXXXX"
-infile$ = mktemp.name$ + infile$
-
-# Do it!
-@serialise(infile$, outfile$, output$, format$, collection)
-
-# Delete the temporary directory
-deleteFile: infile$
-deleteFile: mktemp.name$
-
-# Restore the original selection and clean-up
-@restoreSavedSelection(original_selection)
-removeObject: original_selection
-
-# If the user requested preferences to be kept, restore originals
-@restoreOutputPreferences()
-
-#
-# Procedures
-#
-
-# Serialise the data structure, with the help of a Perl script
-procedure serialise (.in$, .out$, .output$, .format$, .collection)
-  Save as text file: .in$
-  command$ = "perl """ + preferencesDirectory$ +
-    ... "/plugin_serialise/scripts/praat2yaml.pl"" " +
-    ... "--" + .output$       + " " +
-    ... "--" + .format$       + " " +
-    ... "--outfile """ + .out$  + """ " +
-    ... """" + .in$ + """"
-#   appendInfoLine: command$
-  system 'command$'
-endproc
+runScript: "serialise.praat", save_as$, output$, format$, pretty_printed
