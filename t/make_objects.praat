@@ -245,12 +245,18 @@ To FilesInMemory
 
 Create HMM: "hmm", "no", 3, 3
 @add()
-To HMM_ObservationSequence: 0, 20
+
+nocheck To HMM_ObservationSequence: 0, 20
+if numberOfSelected()
+  nocheck To HMMObservationSequence: 0, 20
+endif
 @add()
 
 @plus("HMM")
-To HMM_StateSequence
-@add()
+nocheck To HMM_StateSequence
+if numberOfSelected()
+  nocheck To HMMStateSequence
+endif
 
 Create simple Polygon: "p", "0.0 0.0  0.0 1.0  1.0 0.0"
 @add()
