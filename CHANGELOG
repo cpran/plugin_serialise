@@ -1,3 +1,6 @@
+- v0.0.10: # unreleased
+  - Changed names of (de)serialisation Praat scripts
+  - CI job now tests Praat pre and post v6.0
 - v0.0.9:
   - Fixes HMM_* related warnings in Praat >=6.0.01
   - setup.praat now uses nocheck
