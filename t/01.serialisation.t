@@ -17,13 +17,15 @@
 #
 # Copyright 2014, 2015 Jose Joaquin Atria
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
 include ../../plugin_serialise/procedures/preferences.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_utils/procedures/utils.proc
+
+@normalPrefDir()
 
 # To test all* objects
 runScript: "make_objects.praat"

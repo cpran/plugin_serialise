@@ -25,8 +25,7 @@ include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "^~", homeDirectory$, 0)
+@normalPrefDir()
 
 form Read from serialised text file...
   sentence Read_from

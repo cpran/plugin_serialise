@@ -26,8 +26,7 @@ include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_serialise/procedures/preferences.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "^~", homeDirectory$, 0)
+@normalPrefDir()
 
 form Save as serialised text file...
   sentence Save_as

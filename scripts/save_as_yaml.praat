@@ -23,7 +23,7 @@
 
 include ../../plugin_utils/procedures/utils.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+@normalPrefDir()
 
 form Save as YAML...
   sentence Save_as
