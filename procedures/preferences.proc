@@ -22,25 +22,28 @@ procedure checkOutputPreferences ()
   @saveOutputPreferences()
   .restore = 0
   if saveOutputPreferences.output$ != "UTF-8"
-    @saveSelection()
-    .tmp = Create Sound as pure tone: "test",
-      ... 1, 0, 0.1, 44100, 220, 0.2, 0.01, 0.01
-    .gui = nocheck View & Edit
-    removeObject: .tmp
-    @restoreSelection()
-    if .gui = undefined
-      .restore = 1
-    else
-      beginPause: "This script requires output to be set to UTF-8"
-      .button = endPause: "Abort", "Set temporarily", "Set permanently", 3, 1
-      if .button == 1
-        exit
-      elsif .button == 2
+
+    if saveOutputPreferences.output$ != ""
+      @saveSelection()
+      .tmp = Create Sound as pure tone: "test",
+        ... 1, 0, 0.1, 44100, 220, 0.2, 0.01, 0.01
+      .gui = nocheck View & Edit
+      removeObject: .tmp
+      @restoreSelection()
+      if .gui = undefined
         .restore = 1
-      elsif .button == 3
-        .preferences$ = replace_regex$(saveOutputPreferences.preferences$,
-          ... "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
-        writeFile: saveOutputPreferences.file$, .preferences$
+      else
+        beginPause: "This script requires output to be set to UTF-8"
+        .button = endPause: "Abort", "Set temporarily", "Set permanently", 3, 1
+        if .button == 1
+          exit
+        elsif .button == 2
+          .restore = 1
+        elsif .button == 3
+          .preferences$ = replace_regex$(saveOutputPreferences.preferences$,
+            ... "^(TextEncoding.outputEncoding: ).*" ,"\1UTF-8", 1)
+          writeFile: saveOutputPreferences.file$, .preferences$
+        endif
       endif
     endif
     Text writing preferences: "UTF-8"

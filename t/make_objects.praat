@@ -3,6 +3,7 @@ include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_utils/procedures/utils.proc
 
 preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "^~", homeDirectory$, 0)
 
 @mktemp("mkobj.XXXXX")
 dir$ = mktemp.name$
@@ -246,6 +247,7 @@ Create HMM: "hmm", "no", 3, 3
 @add()
 To HMM_ObservationSequence: 0, 20
 @add()
+
 @plus("HMM")
 To HMM_StateSequence
 @add()
