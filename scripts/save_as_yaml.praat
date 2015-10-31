@@ -1,16 +1,27 @@
 # Praat object to JSON converter
-# This version is _much_ simpler, and _much_ more robust but it does require
-# Perl. For the older, kludgier, pure praat version, use save_as_json.old.praat
+# This version is _much_ simpler, and _much_ more robust but it
+# does require Perl.
 #
-# Written by Jose J. Atria (13 February 2015)
+# This script is part of the serialise CPrAN plugin for Praat.
+# The latest version is available through CPrAN or at
+# <http://cpran.net/plugins/serialise>
 #
-# This script is free software: you can redistribute it and/or
-# modify it under the terms of the GNU General Public License as
-# published by the Free Software Foundation, either version 3 of
-# the License, or (at your option) any later version.
+# The serialise plugin is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, either
+# version 3 of the License, or (at your option) any later version.
 #
-# A copy of the GNU General Public License is available at
-# <http://www.gnu.org/licenses/>.
+# The serialise plugin is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with serialise. If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 2014, 2015 Jose Joaquin Atria
+
+include ../../plugin_utils/procedures/utils.proc
 
 preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
 
