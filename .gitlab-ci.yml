@@ -14,12 +14,13 @@ Run tests:
   - "cp -fa ../plugin_selection ~/.praat-dir/plugin_selection"
   - "cp -fa . ~/.praat-dir/plugin_serialise"
   # Run tests
-  - "prove -v --exec praat"
+  - "prove -v --exec \"praat-5.4.22 --ansi"
+  - "prove -v --exec \"praat-5.6.03 --ansi --run"
   # Clear workspace
   - "rm -rf ~/.praat-dir/plugin_testsimple ../plugin_testsimple"
   - "rm -rf ~/.praat-dir/plugin_utils ../plugin_utils"
   - "rm -rf ~/.praat-dir/plugin_selection ../plugin_selection"
   - "rm -rf ~/.praat-dir/plugin_serialise"
-  tags: 
+  tags:
   except:
   - tags
