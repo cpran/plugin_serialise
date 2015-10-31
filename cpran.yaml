@@ -7,7 +7,7 @@ Depends:
   praat: 5.0.0+
   perl: 5.10+
   Plugins:
-    utils: 0.0.1+
+    utils: 0.0.12+
     selection: 0.0.1+
     testsimple: 0.0.5+
 Recommends:
