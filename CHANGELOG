@@ -1,17 +1,21 @@
-- v0.0.7
+- v0.0.8:
+  - Fixes HMM_* related warnings in Praat >=6.0.01
+  - setup.praat now uses nocheck
+  - Use new URL in descriptor
+- v0.0.7:
   - Preference checking is cross platform also in tests
   - System commands now run without nocheck
   - Filenames are quoted to support spaces
   - Home shorthands (~) are supported
   - Added this changelog
-- v0.0.6
+- v0.0.6:
   - Preference checking is now cross-platform
-- v0.0.5
+- v0.0.5:
   - Bug fix in preference checking methods
-- v0.0.4
+- v0.0.4:
   - More supported objects: Discriminant
   - Serialiser prompts user when output preferences are not UTF-8
-- v0.0.3
+- v0.0.3:
   - Minor bug fixes for collections
   - Tests are run using UTF-8 encoding
   - Always uses standard preferences directory
