@@ -5,13 +5,16 @@ procedure saveOutputPreferences ()
     ...    "--undefined--" fi fi fi
   .file$ = preferencesDirectory$ + "/" + .file$
 
-  .preferences$ = readFile$(.file$)
+  .preferences$ = nocheck readFile$(.file$)
   .output$ = extractLine$(.preferences$, "TextEncoding.outputEncoding: ")
 endproc
 
 procedure restoreOutputPreferences ()
   if checkOutputPreferences.restore
-    Text writing preferences: saveOutputPreferences.output$
+    Text writing preferences: if saveOutputPreferences.output$ == "" then
+      ... "try ASCII, then UTF-16" else
+      ... saveOutputPreferences.output$
+      fi
   endif
 endproc
 
