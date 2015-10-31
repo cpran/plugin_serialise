@@ -14,7 +14,7 @@ procedure restoreOutputPreferences ()
     Text writing preferences: if saveOutputPreferences.output$ == "" then
       ... "try ASCII, then UTF-16" else
       ... saveOutputPreferences.output$
-      fi
+      ... fi
   endif
 endproc
 
