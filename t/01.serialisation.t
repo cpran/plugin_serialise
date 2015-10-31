@@ -65,12 +65,17 @@ for i to split.length
     if get.id != undefined and get.id
 
       # Mark known-to-fail objects as TODO
-      if     object_name$ = "Art"       or
-         ... object_name$ = "Artword"   or
-         ... object_name$ = "HMM"       or
-         ... object_name$ = "KNN"       or
-         ... object_name$ = "OTGrammar"
+      if     object_name$ == "Art"       or
+         ... object_name$ == "Artword"   or
+         ... object_name$ == "HMM"       or
+         ... object_name$ == "KNN"       or
+         ... object_name$ == "OTGrammar"
         @todo(1, "No writer for " + object_name$)
+      endif
+
+      # See https://gitlab.com/cpran/plugin_serialise/issues/4
+      if object_name$ == "FFNet" and praatVersion >= 6001
+        @skip(1, object_name$ + " objects unsupported in Praat v" + praatVersion$)
       endif
 
       original = get.id
