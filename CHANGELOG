@@ -1,7 +1,9 @@
-- v0.0.8:
+- v0.0.9:
   - Fixes HMM_* related warnings in Praat >=6.0.01
   - setup.praat now uses nocheck
   - Use new URL in descriptor
+- v0.0.8:
+  - Fixes bug with use of Readonly in Perl scripts
 - v0.0.7:
   - Preference checking is cross platform also in tests
   - System commands now run without nocheck
