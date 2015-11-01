@@ -71,8 +71,10 @@ nocheck Add action command: "Eigen",                   0, "", 0, "", 0, "Save as
 nocheck Add action command: "Excitation",              0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "Excitations",             0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "ExperimentMFC",           0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
-nocheck Add action command: "FFNet",                   0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "FeatureWeights",          0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
+if !(praatVersion >= 6001 and praatVersion < 6004)
+  nocheck Add action command: "FFNet",                 0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
+endif
 nocheck Add action command: "Formant",                 0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "FormantFilter",           0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "FormantGrid",             0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
@@ -197,7 +199,9 @@ nocheck Add action command: "Eigen",                   0, "", 0, "", 0, "Save as
 nocheck Add action command: "Excitation",              0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
 nocheck Add action command: "Excitations",             0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
 nocheck Add action command: "ExperimentMFC",           0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
-nocheck Add action command: "FFNet",                   0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
+if !(praatVersion >= 6001 and praatVersion < 6004)
+  nocheck Add action command: "FFNet",                 0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
+endif
 nocheck Add action command: "FeatureWeights",          0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
 nocheck Add action command: "Formant",                 0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"
 nocheck Add action command: "FormantFilter",           0, "", 0, "", 0, "Save as YAML...", "", 0, "scripts/save_as_yaml.praat"

@@ -74,7 +74,7 @@ for i to split.length
       endif
 
       # See https://gitlab.com/cpran/plugin_serialise/issues/4
-      if object_name$ == "FFNet" and praatVersion >= 6001
+      if object_name$ == "FFNet" and praatVersion >= 6001 and praatVersion < 6004
         @skip(1, object_name$ + " objects unsupported in Praat v" + praatVersion$)
       endif
 
