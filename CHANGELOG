@@ -1,5 +1,7 @@
-- v0.0.10: # unreleased
+- v0.0.10:
   - Changed names of (de)serialisation Praat scripts
+  - More robust preferences procedures
+  - Fixed a bug in test scripts
   - CI job now tests Praat pre and post v6.0
 - v0.0.9:
   - Fixes HMM_* related warnings in Praat >=6.0.01
