@@ -50,7 +50,7 @@ endform
 original_selection = saveSelectionTable.table
 
 # De-select all incompatible objects
-@deselectTypes("LongSound")
+@minusTypes("LongSound")
 
 # Set initial options:
 @toLower(output$)
