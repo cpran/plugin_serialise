@@ -36,11 +36,13 @@ endproc
 # Restore a remembered value to the preferences file
 #
 procedure restoreOutputPreferences ()
-  if checkOutputPreferences.restore
-    Text writing preferences: if saveOutputPreferences.output$ == "" then
-      ... "try ASCII, then UTF-16" else
-      ... saveOutputPreferences.output$
-      ... fi
+  if variableExists("checkOutputPreferences.restore")
+    if checkOutputPreferences.restore
+      Text writing preferences: if saveOutputPreferences.output$ == "" then
+        ... "try ASCII, then UTF-16" else
+        ... saveOutputPreferences.output$
+        ... fi
+    endif
   endif
 endproc
 
