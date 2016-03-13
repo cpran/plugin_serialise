@@ -109,7 +109,7 @@ removeObject: original_selection
 procedure serialise (.in$, .out$, .output$, .format$, .collection)
   Save as text file: .in$
   command$ = "perl """ + preferencesDirectory$ +
-    ... "/plugin_serialise/scripts/praat2yaml.pl"" " +
+    ... "plugin_serialise/scripts/praat2yaml.pl"" " +
     ... "--" + .output$       + " " +
     ... "--" + .format$       + " " +
     ... "--outfile """ + .out$  + """ " +
