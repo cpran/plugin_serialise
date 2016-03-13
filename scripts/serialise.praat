@@ -38,7 +38,7 @@ form Save as serialised text file...
     option Collection
   boolean Pretty_printed yes
 
-  comment This command requires PERL
+  comment This command requires Perl
   comment If saving multiple objects with the same name, save as Collection
 endform
 

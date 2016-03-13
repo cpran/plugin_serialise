@@ -31,7 +31,7 @@ form Save as YAML...
     option Data stream
     option Collection
 
-  comment This command requires PERL
+  comment This command requires Perl
   comment If saving multiple objects with the same name, save as Collection
 endform
 
