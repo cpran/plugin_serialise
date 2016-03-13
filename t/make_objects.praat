@@ -31,7 +31,6 @@ dir$ = mktemp.name$
 @createEmptySelectionTable()
 objects = createEmptySelectionTable.table
 
-default.intervals = 4
 default.points = 3
 default.channels = 2
 
