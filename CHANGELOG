@@ -1,3 +1,9 @@
+- next: #unreleased
+- v0.0.11:
+  - (De)serialiser scripts now use env perl
+  - Better construction of paths
+  - Fixed last incorrect use of Readonly
+  - Minor cosmetic changes
 - v0.0.10:
   - Changed names of (de)serialisation Praat scripts
   - More robust preferences procedures
