@@ -245,7 +245,11 @@ sub yaml_regex {
   my $input = shift;
 
   my @lines = split "\n", $input;
+  my $wordlist;
   foreach my $i (1..$#lines) {
+    if ($lines[$i] =~ /"WordList"\s*$/) {
+      $wordlist = 1;
+    }
     if ($lines[$i] =~ /([^"]*")(.*)("$)/) {
       my $start = $1;
       my $string = $2;
@@ -272,6 +276,25 @@ sub yaml_regex {
   $input =~ s/(\S+) \[[0-9]+\]( \[[0-9]+\])?:/-/g;
   $input =~ s/<(true|false)>/$1/g;
   $input =~ s/\\/\\\\/g;
+
+  @lines = split "\n", $input;
+  if ($wordlist) {
+    my $in_string;
+    foreach (@lines) {
+      if ($in_string) {
+        if (/^"$/) {
+          $in_string = 0;
+          s/"//;
+        }
+        s/^/  /;
+      }
+      if (/^string: "/) {
+        $in_string = 1;
+        s/^string: "/string: |\n  /;
+      }
+    }
+  }
+  $input = join("\n", @lines) . "\n";
 
   return $input;
 }
