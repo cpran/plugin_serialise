@@ -12,6 +12,7 @@ use Getopt::Long qw(:config no_ignore_case);
 use Encode qw(encode decode);
 use Path::Class;
 use Readonly;
+use Try::Tiny;
 use File::HomeDir;
 
 =head1 NAME
@@ -196,7 +197,14 @@ foreach (@ARGV) {
 
     # To be sure, however, the file is then parsed as YAML anyway, to catch any
     # remaining errors.
-    my $object = Load(encode($setup{encoding}, $input, Encode::FB_CROAK));
+    my $object;
+    try {
+      $object = Load(encode($setup{encoding}, $input, Encode::FB_CROAK))
+    }
+    catch {
+      warn "Cannot serialise object\n";
+      exit 1;
+    };
 
     if ($object->{'Object class'} eq "Collection" and
         !$setup{'collection'}) {
