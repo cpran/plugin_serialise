@@ -22,6 +22,7 @@
 # Copyright 2014, 2015 Jose Joaquin Atria
 
 include ../../plugin_utils/procedures/utils.proc
+include ../../plugin_utils/procedures/try.proc
 include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 include ../../plugin_serialise/procedures/preferences.proc
@@ -88,7 +89,15 @@ outfile$ = checkWriteFile.name$
 infile$ = mktemp.name$ + infile$
 
 # Do it!
-@serialise(infile$, outfile$, output$, format$, collection)
+Save as text file: infile$
+command$ = "perl """ + preferencesDirectory$ +
+  ... "plugin_serialise/scripts/praat2yaml.pl"" " +
+  ... "--" + output$             + " " +
+  ... "--" + format$             + " " +
+  ... "--outfile """ + outfile$  + """ " +
+  ... """" + infile$ + """"
+
+@try: "system " + command$
 
 # Delete the temporary directory
 deleteFile: infile$
@@ -100,20 +109,3 @@ removeObject: original_selection
 
 # If the user requested preferences to be kept, restore originals
 @restoreOutputPreferences()
-
-#
-# Procedures
-#
-
-# Serialise the data structure, with the help of a Perl script
-procedure serialise (.in$, .out$, .output$, .format$, .collection)
-  Save as text file: .in$
-  command$ = "perl """ + preferencesDirectory$ +
-    ... "plugin_serialise/scripts/praat2yaml.pl"" " +
-    ... "--" + .output$       + " " +
-    ... "--" + .format$       + " " +
-    ... "--outfile """ + .out$  + """ " +
-    ... """" + .in$ + """"
-#   appendInfoLine: command$
-  system 'command$'
-endproc

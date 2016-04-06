@@ -22,6 +22,7 @@
 # Copyright 2014, 2015 Jose Joaquin Atria
 
 include ../../plugin_utils/procedures/utils.proc
+include ../../plugin_utils/procedures/try.proc
 include ../../plugin_utils/procedures/check_filename.proc
 include ../../plugin_selection/procedures/selection.proc
 
@@ -47,9 +48,12 @@ tmpfile$ = mktemp.name$ + name$ + ".Praat"
 command$ = "perl """ + preferencesDirectory$ +
   ... "/plugin_serialise/scripts/yaml2praat.pl"" " +
   ... """" + infile$ + """ --outfile """ + tmpfile$ + """"
-# appendInfoLine: command$
-system 'command$'
-Read from file: tmpfile$
+
+@try: "system " + command$
+
+if !try.catch
+  Read from file: tmpfile$
+endif
 
 deleteFile: tmpfile$
 deleteFile: mktemp.name$
