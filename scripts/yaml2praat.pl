@@ -197,7 +197,7 @@ foreach (@ARGV) {
       die "Error reading $_.\n $@\n" ;
     }
 
-    $input =~ s/(~|null)/{}/g;
+    $input =~ s/((?<=\s)~(?=\s)|null)/{}/g;
 
     my $object;
     try {
