@@ -1,4 +1,13 @@
 - next: #unreleased
+- v0.0.12:
+  - Changed:
+    - Paths in Praat serialiser based on default directory
+    - Updated dependency on utils to v0.0.16
+    - New test structure makes tests run twice as fast
+  - Fixed:
+    - Better detection of null characters (~) in YAML
+    - Improved support for AffineTransform, Speaker, and WordList
+    - Perl serialiser uses Try::Tiny for error handling
 - v0.0.11:
   - (De)serialiser scripts now use env perl
   - Better construction of paths
