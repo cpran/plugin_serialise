@@ -90,8 +90,8 @@ infile$ = mktemp.name$ + infile$
 
 # Do it!
 Save as text file: infile$
-command$ = "perl """ + preferencesDirectory$ +
-  ... "plugin_serialise/scripts/praat2yaml.pl"" " +
+command$ = "perl """ + defaultDirectory$ +
+  ... "/praat2yaml.pl"" " +
   ... "--" + output$             + " " +
   ... "--" + format$             + " " +
   ... "--outfile """ + outfile$  + """ " +
