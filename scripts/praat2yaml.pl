@@ -145,8 +145,8 @@ GetOptions (
     shift;
     my $out = shift;
     $out =~ s/^~/File::HomeDir->my_home/e;
-    open OUTPUT, '>', $out or die "Could not open $out: $!";
-    STDOUT->fdopen( \*OUTPUT, 'w' ) or die $!;
+    open( my $OUTPUT, '>', $out ) or die "Could not open $out: $!";
+    STDOUT->fdopen( $OUTPUT, 'w' ) or die $!;
   },
 ) or pod2usage(2);
 
