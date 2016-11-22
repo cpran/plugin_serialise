@@ -1,4 +1,4 @@
-include ../../plugin_testsimple/procedures/test_simple.proc
+include ../../plugin_tap/procedures/more.proc
 include ../../plugin_serialise/procedures/preferences.proc
 include ../../plugin_utils/procedures/utils.proc
 
@@ -36,8 +36,7 @@ nocheck runScript: preferencesDirectory$ +
   ... "/plugin_serialise/scripts/save_as_json.praat",
   ... json_file$, "Data stream", "yes"
 
-@ok: fileReadable(json_file$),
-  ... "Wrote file"
+@is_true: fileReadable(json_file$), "Wrote file"
 
 nocheck selectObject: undefined
 nocheck runScript: preferencesDirectory$ +
@@ -58,12 +57,12 @@ if numberOfSelected()
   endif
 endif
 
-@ok: read, "Read file"
+@is_true: read, "Read file"
 
 deleteFile: json_file$
 deleteFile: temporaryDirectory$
 
-@ok: !fileReadable(temporaryDirectory$),
+@is_false: fileReadable(temporaryDirectory$),
   ... "Deleted temporary directory"
 
 # Make sure not to remove the original
