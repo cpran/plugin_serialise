@@ -4,6 +4,7 @@ variables:
   CPRAN_PREF_DIR: "/builds/$CI_PROJECT_NAMESPACE"
 
 before_script:
+  - cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
   - cpanm Path::Class YAML::XS Try::Tiny File::HomeDir Readonly
   - cpran init --notest --reinstall
   - cpran update
