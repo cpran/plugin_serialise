@@ -35,6 +35,7 @@ nocheck Add menu command: "Objects", "Open",  "Read from JSON/YAML...", "",     
 
 # Data serialisation
 nocheck Add action command: "Activation",              0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
+nocheck Add action command: "ActivationList",          0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "AffineTransform",         0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "AmplitudeTier",           0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "Art",                     0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
@@ -122,6 +123,7 @@ nocheck Add action command: "PCA",                     0, "", 0, "", 0, "Save as
 nocheck Add action command: "PairDistribution",        0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "ParamCurve",              0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "Pattern",                 0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
+nocheck Add action command: "PatternList",             0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "Permutation",             0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "Pitch",                   0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
 nocheck Add action command: "PitchTier",               0, "", 0, "", 0, "Save as JSON...", "", 0, "scripts/save_as_json.praat"
