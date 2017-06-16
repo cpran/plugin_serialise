@@ -1,4 +1,10 @@
 - next: #unreleased
+- v0.0.13:
+  - Fixed:
+    - Fixed an issue with renamed object types in recent versions of Praat
+  - Changes:
+    - Minor improvements to CI scripts
+    - Now uses tap instead of testsimple
 - v0.0.12:
   - Changed:
     - Paths in Praat serialiser based on default directory
